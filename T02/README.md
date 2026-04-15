@@ -2,6 +2,11 @@
 
 ## 📄 Descripció del projecte
 
+FoodLogistic ha detectat la necessitat urgent de renovar la seva presència digital per adaptar-se als estàndards actuals tant en l’àmbit tècnic com legal. L’actual pàgina web presenta limitacions importants: un disseny obsolet, mancances funcionals i l’incompliment de normatives vigents com la LOPDGDD i la LSSI-CE.
+
+Davant d’aquesta situació, l’empresa sol·licita una proposta de millora que no només sigui teòrica, sinó que inclogui una demostració pràctica i funcional. Per aquest motiu, es requerirà el desenvolupament i desplegament d’un nou lloc web en un servidor real, permetent així visualitzar de manera fidel la nova identitat digital de FoodLogistic.
+
+En aquesta activitat, es posaran en pràctica els coneixements adquirits en la guia de desplegament, amb l’objectiu d’assolir tres punts clau: la modernització de la imatge corporativa online, el compliment de la normativa legal vigent i la publicació efectiva del projecte en un entorn real accessible.
 
 ---
 
