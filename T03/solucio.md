@@ -2,51 +2,78 @@
 
 ## 1. Preparació i seguretat de Grups (AD)
 
-Farem 2 OUs una per usuaris un altre per equips i crearem 3 grups administració, transport, direcció
+## Justificació de l’estructura AD
+
+S’han creat tres OUs: **Usuaris**, **Equips** i **Grups** per separar els diferents objectes i facilitar-ne la gestió i l’aplicació de polítiques.
+
+Dins de l’OU **Grups** s’han creat els grups **Administracio**, **Transport** i **Direccio**, que permeten assignar permisos de forma eficient per departaments.
+
+Aquesta estructura és clara, escalable i facilita la gestió centralitzada dels permisos.
+
 ![alt text](img/image.png)
+
+---
 
 ## 2. Implementació de recursos compartits
 
 ### A. Carpeta Public
 
-Crearem la carpeta public mitjançant el explorador d'arxius
-Asignarem permisos smb nomes laectura tothom
-![alt text](img/image-1.png)
+Crearem la carpeta **Public** mitjançant l’explorador d’arxius.
+
+Assignarem permisos SMB de només lectura per a tothom.
+
+![alt text](img/image-1.png)  
 ![alt text](img/image-2.png)
+
+---
 
 ### B. Carpeta Operacions
 
-Crearem la carpeta operacions amb Server Manager FSSM
+**IMPORTANT:** Cal crear una carpeta arrel i, dins d’aquesta, totes les subcarpetes. Si no, l’**Access-Based Enumeration** no funcionarà correctament.
+
+Crearem la carpeta **Operacions** amb el Server Manager (FSSM).
+
 ![alt text](img/image-3.png)
 
-Seleccionarem la seguent opcio
+Seleccionarem la següent opció:
+
 ![alt text](img/image-4.png)
 
-Ens preguntara la ruta en la qual volem compartir anirem a Type a custom path 
+Ens demanarà la ruta; seleccionarem **Type a custom path**.
+
 ![alt text](img/image-5.png)
 
-Crearem la carpeta i la anomenarem Operacions
+Crearem la carpeta i l’anomenarem **Operacions**.
+
 ![alt text](img/image-6.png)
 
-Continuarem
+Continuarem:
+
 ![alt text](img/image-7.png)
 
-Per fer que nomes es mostri pels usuaris que tenen acces activarem l'opcio Acces-Based Enumeration
+Per fer que només es mostri als usuaris que tenen accés, activarem l’opció **Access-Based Enumeration**.
+
 ![alt text](img/image-8.png)
 
-Li donarem a customize permission
-![alt text](img/image-9.png)´
+Farem clic a **Customize permissions**.
 
-Posarem Full control per el grup transport i treurem permissos a tota la resta
-![alt text](img/image-10.png)
+![alt text](img/image-9.png)
+
+Assignarem **Full Control** al grup **Transport** i eliminarem permisos a la resta.
+
+![alt text](img/image-10.png)  
 ![alt text](img/image-11.png)
 
-Tindrem un resum de els usuaris que tindran permissos a la carpeta
-![alt text](img/image-12.png)
+Obtindrem un resum dels permisos:
+
+![alt text](img/image-12.png)  
 ![alt text](img/image-13.png)
 
-Tindrem aquesta finestra de Conclusió
+Pantalla de conclusió:
+
 ![alt text](img/image-14.png)
+
+---
 
 ### D. Carpeta Confidencial
 
@@ -56,7 +83,7 @@ New-Item -Path "C:\Direccio" -ItemType Directory`
 ```
 ![alt text](img/image-15.png)
 
-A continuació amb les seguents comandes configurarem els permisos
+A continuació amb les següents comandes configurarem els permisos
 ```powershell
 # Eliminar herència
 icacls "E:\Direccio" /inheritance:r
@@ -78,7 +105,7 @@ Activarem Access-Based Enumeration
 Set-SmbShare -Name "Direccio" -FolderEnumerationMode AccessBased
 ```
 
-Crearem una GPO on mapejarem la unitat a nomes els usuaris de Direcció
+Crearem una GPO on mapejarem la unitat a només els usuaris de Direcció
 ![alt text](img/image-16.png)
 ![alt text](img/image-17.png)
 
@@ -86,50 +113,50 @@ Crearem una GPO on mapejarem la unitat a nomes els usuaris de Direcció
 
 ### Quotes NTFS (Control per Volum)
 
-Començarem instalant el File Server Resource Manager(FSRM)
+Començarem instal·lant el File Server Resource Manager (FSRM)
 ![alt text](img/image-18.png)
 
-Posarem al disc E una quota de 500MB amb un avis de 400MB
+Posarem al disc E una quota de 500MB amb un avís de 400MB
 ![alt text](img/image-19.png)
 
 ### FSRM (Control per Carpeta)
 
-Obrirem FSRM i crearem una plantilla de quota 
+Obrirem FSRM i crearem una plantilla de quota
 ![alt text](img/image-20.png)
 
 A notification Thresholds farem click a Add
 ![alt text](img/image-21.png)
 
-Ara crearem una nova quota la posarem a la carpeta public i seleccionarem la pllantilla que em creat abanç
+Ara crearem una nova quota i la posarem a la carpeta Public i seleccionarem la plantilla que hem creat abans
 ![alt text](img/image-22.png)
 
-Ara filtrarem per arxius fent que a la carpeta Operacions no es pugin guardar arxius executables ni fitxers d'audio o video
-Crearem una plantilla per no permetre els arxius anteriorment mencionats
+Ara filtrarem per arxius fent que a la carpeta Operacions no es puguin guardar arxius executables ni fitxers d'àudio o vídeo
+Crearem una plantilla per bloquejar aquests arxius
 ![alt text](img/image-23.png)
 
-Crearem la prohibicio a File Screens i seleccionarem la plantilla
+Crearem la prohibició a File Screens i seleccionarem la plantilla
 ![alt text](img/image-24.png)
 
 ## 4. Verificació i Auditoria
 
 ### COMPROVACIÓ GRUP TRANSPORT
-comprovarem que tenim la carpeta operacions amb el usuari b.batalla del grup transport no podrem veure les altres carpetes
+Comprovarem que tenim la carpeta Operacions amb l’usuari b.batalla del grup Transport. No podrem veure les altres carpetes.
 ![alt text](img/image-25.png)
 
 
-Ara veurem com podem entrar a dins de la carpeta i no podrem posar a dins un arxiu .exe pero si podem posar un txt
+Ara veurem com podem entrar dins la carpeta i no podrem posar un fitxer .exe però sí un .txt
 ![alt text](img/image-26.png)
 
-Ara si cambiem el .exe per txt veurem com podem posarlo dins de la carpeta 
+Si canviem l’extensió de .exe a .txt es pot copiar dins la carpeta
 ![alt text](img/image-27.png)
 
 ### COMPROVACIÓ GRUP DIRECCIÓ
-comprovarem que tenim la carpeta direccio amb el usuari m.melendo del grup direcció no podrem vuere les altres.
+Comprovarem que tenim la carpeta Direccio amb l’usuari m.melendo del grup Direcció. No podrem veure les altres carpetes.
 ![alt text](img/image-28.png)
 
-com podem veure la gpo esta correctament montada com la unitat Z:
+La GPO està correctament aplicada amb la unitat Z:
 ![alt text](img/image-29.png)
 
 ### COMPROVACIÓ GRUP ADMINSITRACIÓ
-El grup Administració pot veure nomes la carpeta public
+El grup Administració només pot veure la carpeta Public
 ![alt text](img/image-30.png)
