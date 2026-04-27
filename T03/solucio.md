@@ -161,7 +161,7 @@ La GPO està correctament aplicada amb la unitat Z:
 El grup Administració només pot veure la carpeta Public
 ![alt text](img/image-30.png)
 
-### COMPROVACIÓ QUOTA DISC E
+### COMPROVACIÓ QUOTA DISC SECUNDARI
 
 Com podem veure volem possar mes de 500MB al nostre disc E per la restricció de quota no ens deixara
 ![alt text](img/image-31.png)
