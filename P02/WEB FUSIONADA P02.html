@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FoodLogistic S.A.</title>
+
+<style>
+:root{
+    --dark:#0f1a1d;
+    --primary:#1f3c2f;
+    --accent:#c7a17a;
+    --light:#f5f5f5;
+    --white:#fff;
+    --secondary:#d4af37;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI,sans-serif;
+}
+
+body{
+    background:var(--light);
+    color:#333;
+}
+
+/* HEADER */
+header{
+    background:var(--dark);
+    color:white;
+    padding:1rem 2rem;
+    position:sticky;
+    top:0;
+    z-index:10;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+nav h1{
+    color:var(--accent);
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:1rem;
+}
+
+nav a{
+    color:white;
+    text-decoration:none;
+}
+
+nav a:hover{
+    color:var(--secondary);
+}
+
+/* HERO */
+.hero{
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+    url('https://picsum.photos/1600/800?food,logistics') center/cover;
+    color:white;
+    text-align:center;
+    padding:6rem 2rem;
+}
+
+.hero h1{
+    font-size:3rem;
+}
+
+/* SECTIONS */
+.container{
+    max-width:1100px;
+    margin:auto;
+    padding:3rem 2rem;
+}
+
+h2{
+    color:var(--primary);
+    margin-bottom:1rem;
+}
+
+/* SERVICES */
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:1rem;
+}
+
+.card{
+    background:white;
+    padding:1.5rem;
+    border-left:5px solid var(--accent);
+    border-radius:10px;
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+/* FORM */
+form{
+    display:flex;
+    flex-direction:column;
+    gap:1rem;
+}
+
+input,textarea{
+    padding:0.8rem;
+    border:1px solid #ccc;
+    border-radius:5px;
+}
+
+button{
+    background:var(--primary);
+    color:white;
+    padding:0.8rem;
+    border:none;
+    cursor:pointer;
+}
+
+button:hover{
+    background:var(--secondary);
+    color:black;
+}
+
+/* LEGAL TABS */
+.tabs{
+    display:flex;
+    gap:1rem;
+    margin-bottom:1rem;
+}
+
+.tab-btn{
+    padding:0.5rem 1rem;
+    border:none;
+    cursor:pointer;
+    background:#ddd;
+    border-radius:5px;
+}
+
+.tab-btn.active{
+    background:var(--accent);
+    color:white;
+}
+
+.tab-content{
+    display:none;
+}
+
+.tab-content.active{
+    display:block;
+}
+
+/* COOKIE */
+#cookieBanner{
+    position:fixed;
+    bottom:0;
+    width:100%;
+    background:#111;
+    color:white;
+    padding:1rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+/* FOOTER */
+footer{
+    background:var(--dark);
+    color:white;
+    text-align:center;
+    padding:2rem;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<h1>FoodLogistic</h1>
+<ul>
+<li><a href="#inici">Inici</a></li>
+<li><a href="#serveis">Serveis</a></li>
+<li><a href="#contacte">Contacte</a></li>
+<li><a href="#legal">Legal</a></li>
+</ul>
+</nav>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="inici">
+<h1>Solucions logístiques per al sector alimentari</h1>
+</section>
+
+<!-- SERVEIS -->
+<section class="container" id="serveis">
+<h2>Els nostres serveis</h2>
+
+<div class="grid">
+<div class="card">❄️ Transport refrigerat</div>
+<div class="card">🚚 Distribució optimitzada</div>
+<div class="card">🏭 Magatzematge segur</div>
+</div>
+</section>
+
+<!-- SOBRE -->
+<section class="container">
+<h2>Sobre nosaltres</h2>
+<p>FoodLogistic és una empresa especialitzada en logística alimentària amb tecnologia avançada per garantir eficiència i seguretat.</p>
+</section>
+
+<!-- CONTACTE -->
+<section class="container" id="contacte">
+<h2>Contacte</h2>
+
+<form id="contactForm">
+<input type="text" id="name" placeholder="Nom" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="tel" id="phone" placeholder="Telèfon" required>
+<textarea id="message" placeholder="Missatge" required></textarea>
+
+<label>
+<input type="checkbox" id="privacy" required>
+Accepto la política de privacitat
+</label>
+
+<label>
+<input type="checkbox">
+Vull rebre comunicacions comercials
+</label>
+
+<button type="submit">Enviar</button>
+</form>
+
+<p id="formMessage"></p>
+</section>
+
+<!-- LEGAL -->
+<section class="container" id="legal">
+<h2>Informació legal</h2>
+
+<div class="tabs">
+<button class="tab-btn active" onclick="openTab('avis')">Avís Legal</button>
+<button class="tab-btn" onclick="openTab('privacitat')">Privacitat</button>
+<button class="tab-btn" onclick="openTab('cookies')">Cookies</button>
+</div>
+
+<div id="avis" class="tab-content active">
+<div class="card">
+<h3>Avís Legal</h3>
+<p>FoodLogistic S.A. és responsable del tractament de dades personals.</p>
+</div>
+</div>
+
+<div id="privacitat" class="tab-content">
+<div class="card">
+<h3>Privacitat</h3>
+<p>Drets ARSOPL: accés, rectificació, supressió, oposició, portabilitat i limitació.</p>
+</div>
+</div>
+
+<div id="cookies" class="tab-content">
+<div class="card">
+<h3>Cookies</h3>
+<p>Utilitzem cookies per millorar l’experiència de l’usuari.</p>
+</div>
+</div>
+</section>
+
+<footer>
+<p>&copy; 2026 FoodLogistic S.A.</p>
+</footer>
+
+<!-- COOKIE BANNER -->
+<div id="cookieBanner">
+<span>Aquest lloc utilitza cookies.</span>
+<div>
+<button onclick="acceptCookies()">Acceptar</button>
+<button onclick="rejectCookies()">Rebutjar</button>
+</div>
+</div>
+
+<script>
+// FORM VALIDATION
+const form = document.getElementById("contactForm");
+const message = document.getElementById("formMessage");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const name = document.getElementById("name").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const text = document.getElementById("message").value.trim();
+    const privacy = document.getElementById("privacy");
+
+    if(!name || !email || !phone || !text){
+        message.textContent = "Omple tots els camps.";
+        message.style.color = "red";
+        return;
+    }
+
+    if(!privacy.checked){
+        message.textContent = "Accepta la política de privacitat.";
+        message.style.color = "red";
+        return;
+    }
+
+    message.textContent = "Missatge enviat correctament!";
+    message.style.color = "green";
+    form.reset();
+});
+
+// TABS
+function openTab(tab){
+    document.querySelectorAll('.tab-content').forEach(e=>e.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(e=>e.classList.remove('active'));
+
+    document.getElementById(tab).classList.add('active');
+    event.target.classList.add('active');
+}
+
+// COOKIES
+function acceptCookies(){
+    localStorage.setItem("cookies","yes");
+    document.getElementById("cookieBanner").style.display="none";
+}
+
+function rejectCookies(){
+    localStorage.setItem("cookies","no");
+    document.getElementById("cookieBanner").style.display="none";
+}
+
+if(localStorage.getItem("cookies")){
+    document.getElementById("cookieBanner").style.display="none";
+}
+</script>
+
+</body>
+</html>
