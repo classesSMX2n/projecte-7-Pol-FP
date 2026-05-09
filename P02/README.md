@@ -58,3 +58,7 @@ L’objectiu és que el client pugui:
 - 👀 Visualitzar la proposta web
 - 🌍 Accedir-hi en línia
 - ✅ Avaluar-la com a possible substitució de la web actual
+
+## Link de la pagina
+
+[Pagina Web](https://classessmx2n.github.io/web-projecte7-Pol-FP/)
