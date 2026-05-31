@@ -29,6 +29,8 @@ Al Moodle teniu l'enllaç al document amb l'enunciat del projecte.
 - **Nombre de treballadors:** 35
 - **Facturació darrer any:** 25 milions d’euros.
 
+## Contingut del Projecte
+
 - [**Tasca 1 (T01)**](./T01)
 - [**Tasca 2 (T02)**](./T02)
 - [**Tasca 3 (T03)**](./T03)
