@@ -6,9 +6,9 @@
 
 ## Autor
 
-Nom: [Escriu el teu nom aquí]
+Nom: Pol Castaño Meneses
 
-Formant grups de treball: [Escriu els noms dels membres del grup aquí]
+Formant grups de treball: Biel.B i Pol.C
 
 ## Descripció del projecte
 
